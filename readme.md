@@ -11,7 +11,7 @@ Run in local with:
 * /etc/apache2/sites-enabled/001-cloud9.conf
 * DocumentRoot /home/ubuntu/workspace/public
 ...
-### Run in codeenvy
+### Run in codenvy
 * Edit the file
 * vim /etc/apache2/sites-enabled/000-default.conf
 -----------------------------

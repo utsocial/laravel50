@@ -1,4 +1,4 @@
-## laravel 5
+## laravel 5.0 
 
 Run in local with:
 10.0.1.105
@@ -15,7 +15,7 @@ Run in local with:
 * Edit the file
 * vim /etc/apache2/sites-enabled/000-default.conf
 -----------------------------
-## Disable xdebug module
+### Disable xdebug module
 
 * #sudo php5dismod xdebug
 * sudo service apache2 restart

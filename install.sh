@@ -9,50 +9,40 @@ COLOR_NONE='\e[0m' # No Color
 
 # Intro
 echo -e "${COLOR_INFO}"
-echo "============================="
-echo "=       Vagrant Setup       ="
-echo "============================="
+echo "Vagrant Setup"
+
 echo -e "${COLOR_NONE}"
 
 # Update Packages
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=     Updating Packages     ="
-echo "============================="
+echo "Updating Packages"
 echo -e "${COLOR_NONE}"
 sudo apt-get update
 
 # MySQL Password
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=      MySQL Passwords      ="
-echo "============================="
+echo "MySQL Config and Passwords"
+
 echo -e "${COLOR_NONE}"
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password password root'
 sudo debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password root'
 
-# Basic PAckage Install
+# Basic Package Install
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=   Basic Package Install   ="
-echo "============================="
+echo "Package Install
 echo -e "${COLOR_NONE}"
 sudo apt-get install -y vim curl git-core python-software-properties
 
 # PHP PPA
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=          PHP PPA          ="
-echo "============================="
+echo "PHP PPA"
 echo -e "${COLOR_NONE}"
 sudo add-apt-repository -y ppa:ondrej/php
 sudo apt-get update
 
 # PHP Install
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=   Install PHP && Apache   ="
-echo "============================="
+echo "Install PHP && Apache"
 echo -e "${COLOR_NONE}"
 sudo apt-get install -y php5 apache2 libapache2-mod-php5 php5-curl php5-gd php5-mcrypt mysql-server php5-mysql
 sudo php5enmod mcrypt
@@ -60,9 +50,7 @@ sudo service apache2 restart
 
 # Debug Install
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=      X-Debug Install      ="
-echo "============================="
+echo "X-Debug Install"
 echo -e "${COLOR_NONE}"
 sudo apt-get install -y php5-xdebug
 cat << EOF | sudo tee -a /etc/php5/mods-available/xdebug.ini
@@ -96,35 +84,15 @@ sudo service apache2 restart
 
 # MySQL Configuration
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=    MySQL Configuration    ="
-echo "============================="
+echo "MySQL Configuration"
 echo -e "${COLOR_NONE}"
 sudo service mysql restart
-mysql -h localhost -u root -proot -e "CREATE DATABASE IF NOT EXISTS prod";
+mysql -h localhost -u root -proot -e "CREATE DATABASE IF NOT EXISTS laravel50";
 
 # Composer
 echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=         Composer          ="
-echo "============================="
+echo "Composer"
 echo -e "${COLOR_NONE}"
 curl -sS https://getcomposer.org/installer | php
 sudo mv composer.phar /usr/local/bin/composer
 
-# Laravel
-echo -e "${COLOR_COMMENT}"
-echo "============================="
-echo "=       Laravel Setup       ="
-echo "============================="
-echo -e "${COLOR_NONE}"
-cd /vagrant
-#composer install
-#php artisan setup
-
-# Laravel
-echo -e "${COLOR_INFO}"
-echo "============================="
-echo "=         Completed         ="
-echo "============================="
-echo -e "${COLOR_NONE}"

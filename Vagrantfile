@@ -9,7 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.network :private_network, :ip => "10.0.1.105"
 
-    config.vm.provision :shell, :path => "install.sh"
+    config.vm.provision :shell, :path => "installer.sh"
 
     config.vm.synced_folder ".", "/vagrant", :owner => 'www-data', :group => 'www-data', :mount_options => ["dmode=777", "fmode=777"]
 
